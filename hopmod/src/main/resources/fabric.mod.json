@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "hopmod",
+  "version": "${version}",
+  "name": "HopMod",
+  "description": "Eigener Auto-Bhop + Air-Strafe Client-Mod ohne Speed-Cap, mit Speed-HUD.",
+  "authors": [
+    "Gandalf"
+  ],
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.hopmod.client.HopModClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.0",
+    "fabric-api": "*",
+    "minecraft": "~26.2"
+  }
+}
