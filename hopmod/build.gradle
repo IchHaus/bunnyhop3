@@ -1,17 +1,12 @@
 plugins {
-	id 'fabric-loom' version "${loom_version}"
+	id 'net.fabricmc.fabric-loom' version "${loom_version}"
 	id 'maven-publish'
 }
 
 version = project.mod_version
 group = project.maven_group
 
-base {
-	archivesName = project.archives_base_name
-}
-
 repositories {
-	// Loom adds the essential maven repositories automatically.
 }
 
 loom {
@@ -28,7 +23,6 @@ loom {
 dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
-
 	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 }
 
@@ -47,13 +41,16 @@ tasks.withType(JavaCompile).configureEach {
 
 java {
 	withSourcesJar()
-
 	sourceCompatibility = JavaVersion.VERSION_25
 	targetCompatibility = JavaVersion.VERSION_25
 }
 
-jar {
-	from("LICENSE") {
-		rename { "${it}_${project.archivesBaseName}" }
+publishing {
+	publications {
+		create("mavenJava", MavenPublication) {
+			from components.java
+		}
+	}
+	repositories {
 	}
 }
